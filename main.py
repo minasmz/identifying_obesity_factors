@@ -35,6 +35,13 @@ high_level_omitted = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 
 
 df = df.drop(df.columns[high_level_omitted], axis=1)
 
+'''
+In order to get results of a specific strata, we should uncomment the line below and omit the features (specific columns) that stratum belongs to.
+Also, the name of the files should be changed accordingly (instead of "All", name of that strata should be replaced 
+'''
+#df = df.loc[df['high_income'] == 1]
+
+# in these two lines we seperate the negative from positive data, we set these numbers (as a big number) to include all data. 
 data_pos = df.loc[df['is_increased'] == 1].head(60000)
 data_neg = df.loc[df['is_increased'] == 0].head(400000)
 print(data_neg.shape)

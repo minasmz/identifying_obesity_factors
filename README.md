@@ -6,7 +6,7 @@ Here is an overview of the proposed procedure in order to discovering distinguis
 
 
 ## Finding rules and their importance
-First of all, the patients and visit level data from Atheana health aggregated and all the data one-hot encoded. For privacy issue, the data is omitted from the repository.
+First of all, the patients and visit level data from Athenahealth aggregated and all the data one-hot encoded. For privacy issue, the data is omitted from the repository.
 
 
 To apply subgroup discovery method to generate rules in two levels of medication(low-level) and visit(high-level) in the [main.py](main.py)

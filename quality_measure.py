@@ -1,11 +1,7 @@
 import pysubgroup as ps
 import pandas as pd
 import re, csv
-#from statistics import stdev
-#import statsmodels.api as sm
-#from scipy.stats import norm
-#import pylab
-#'MEN', 'WOMEN', 'COMMERCIAL',
+
 
 
 #feature_name = ['MEN', 'WOMEN', 'COMMERCIAL', 'SELF_PAY', 'MEDICARE', 'MEDICAID', 'METRO', 'METRO_ADJUNCENT', 'RURAL', 'LOW_INCOME', 'MED_INCOME', 'HIGH_INCOME',
@@ -15,26 +11,21 @@ feature_name = ["All"]
 ii = [3, 4, 5]
 jj = [2000, 5000, 10000]
 
-#beamSearch_medication_level_5000_3WRAccQF_MEDICARE
-
+#saving feature with corresponding quality
 def feature_quality_to_csv (feature_quality_dictionary, i, j, feature_k):
     print(i, j, feature_k)
     with open('avg_quality_0005_medication_level_' + str(j) + '_' + str(i) + '_WRAccQF_om_' + str(feature_k) + '.csv', 'w') as f:
         fieldNames = ['key', 'quality']
         writer = csv.DictWriter(f, fieldnames=fieldNames)
-        #f.write("%s,%s\n" % ('key', 'frequency'))
         writer.writeheader()
         for key in feature_quality_dictionary.keys():
             writer.writerow({'key': key, 'quality': feature_quality_dictionary[key]})
         print (j, i, feature_k)
 
+#calculate quality of each feature in rules with WRAcc quality higher than 0.0005         
 def calc_quality_count_quality(feature_list, i_value, j_value, feature_k):
-    #df = pd.read_csv('updated_obesity_incident_result_' + str(j_value) + '_' + str(i_value) + '_WRAccQF_om_' + str(feature_k) +'.csv')
     df = pd.read_csv('beamSearch_medication_level_' + str(jj[j]) + '_' + str(ii[i]) + 'WRAccQF_' + str(
         feature_name[kkkkk]) + '.csv')
-
-    df = df[df.quality > 0.0005]
-
     feature_quality_dictionary = {}
     for each_feature in feature_list:
         contain_feature = df[df['subgroup'].str.contains(each_feature)]
@@ -46,7 +37,7 @@ def calc_quality_count_quality(feature_list, i_value, j_value, feature_k):
     feature_quality_to_csv(feature_quality_dictionary, i_value, j_value, feature_k)
 
 
-
+#trying to use some abbreviation for long feature names in the dataset
 for kkkkk in range (1):
     for i in range (3):
         for j in range (3):
@@ -85,16 +76,7 @@ for kkkkk in range (1):
             df['subgroup'] = df_subgroup
 
             df = df[df.quality > 0.0005]
-            #df['quality'].hist()
-            #df['quality'].plot(kind='box')
 
-
-            #sm.qqplot(df['quality'], line='45')
-            #pylab.show()
-
-            #quality_list = list(df['quality'])
-            #quality_mean = float(sum(quality_list))/float(len(quality_list))
-            #quality_std = stdev(quality_list)
 
             dfh_sg = df['subgroup']
             dfh_sg_list = list(dfh_sg)
@@ -107,17 +89,6 @@ for kkkkk in range (1):
                     jjj = re.sub('==1', '', jjj)
                     feature_list.append(jjj)
             feature_list = list(set(feature_list))
-
-            '''
-            feature_quality_dictionary = {}
-            for each_feature in feature_list:
-                contain_feature = df[df['subgroup'].str.contains(each_feature)]
-                feature_quality = sum(list(contain_feature['quality']))
-                #number_of_SD = len(list(contain_feature['quality']))
-                #avg_feature_quality = float(feature_quality) / float(number_of_SD)
-                feature_quality_dictionary[each_feature] = feature_quality
-            feature_quality_to_csv(feature_quality_dictionary, ii[i], jj[j], feature_name[kkkkk])
-            '''
             calc_quality_count_quality(feature_list, ii[i], jj[j], feature_name[kkkkk])
 
 

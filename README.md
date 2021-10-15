@@ -2,6 +2,8 @@
 
 Here is an overview of the proposed procedure in order to discovering distinguished factors leading to significant weight gain in adults:
 
+![](graphic.PNG)
+
 
 First of all, the patients and visit level data from Atheana health aggregated and all the data one-hot encoded. For privacy issue, the data is omitted from the repository.
 

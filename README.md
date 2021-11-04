@@ -29,4 +29,4 @@ Then, the WRAcc Average (WA) for each feature appearing in the high quality rule
 
 <img src="https://render.githubusercontent.com/render/math?math=A_{W}(f_{i})=(\sum_{rules \ with \ f_{i}} WRAcc)/(\ Number \ of \ rules \ with \ f_{i})">
 
-In the paper, WA of important features in each of 22 strata as well as all of the data in 9 different experimental setting (in order to show the robustness of method) demoonstrated. 
+In the paper, WA of important features in each of 22 strata as well as all of the data in 9 different experimental settings (in order to show the robustness of method) demonstrated. 
